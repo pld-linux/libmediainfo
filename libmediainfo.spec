@@ -7,9 +7,12 @@ Group:		Libraries
 URL:		http://mediainfo.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/mediainfo/source/libmediainfo/%{version}/%{name}_%{version}.tar.bz2
 # Source0-md5:	899f1f481c6e96918479a4bb1b2cefbe
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 BuildRequires:	libzen-devel >= 0.4.9
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
