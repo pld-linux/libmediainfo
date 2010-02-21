@@ -1,21 +1,23 @@
+%define	libzen_ver 0.4.11
 Summary:	Supplies technical and tag information about a video or audio file
 Name:		libmediainfo
-Version:	0.7.25
+Version:	0.7.28
 Release:	1
 License:	GPL
 Group:		Libraries
 URL:		http://mediainfo.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/mediainfo/source/libmediainfo/%{version}/%{name}_%{version}.tar.bz2
-# Source0-md5:	899f1f481c6e96918479a4bb1b2cefbe
+# Source0-md5:	df6969de3a5f4dc2368c35c6bfe42bd5
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	libzen-devel >= 0.4.9
+BuildRequires:	libzen-devel >= %{libzen_ver}
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
+Requires:	libzen >= %{libzen_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -83,9 +85,8 @@ cd Project/GNU/Library
 	./autogen
 	%configure \
 	--enable-shared \
-	--disable-libcurl \
-	--disable-libmms \
-
+	--with-libcurl=no \
+	--with-libmms=no
 
 	%{__make} clean
 	%{__make}
