@@ -1,0 +1,24 @@
+--- MediaInfoLib/Source/MediaInfo/Multiple/File_P2_Clip.cpp~	2011-01-03 19:29:58.000000000 +0100
++++ MediaInfoLib/Source/MediaInfo/Multiple/File_P2_Clip.cpp	2011-02-13 11:13:40.125000209 +0100
+@@ -35,7 +35,8 @@
+ #include "MediaInfo/MediaInfo_Internal.h"
+ #include "ZenLib/Dir.h"
+ #include "ZenLib/FileName.h"
+-#include "ZenLib/TinyXml/tinyxml.h"
++#define TIXML_USE_STL 1
++#include "tinyxml.h"
+ //---------------------------------------------------------------------------
+ 
+ namespace MediaInfoLib
+--- MediaInfoLib/Source/MediaInfo/Multiple/File_Xdcam_Clip.cpp~	2011-01-03 19:29:59.000000000 +0100
++++ MediaInfoLib/Source/MediaInfo/Multiple/File_Xdcam_Clip.cpp	2011-02-13 11:13:59.596902256 +0100
+@@ -36,7 +36,8 @@
+ #include "ZenLib/Dir.h"
+ #include "ZenLib/File.h"
+ #include "ZenLib/FileName.h"
+-#include "ZenLib/TinyXml/tinyxml.h"
++#define TIXML_USE_STL 1
++#include "tinyxml.h"
+ //---------------------------------------------------------------------------
+ 
+ namespace MediaInfoLib

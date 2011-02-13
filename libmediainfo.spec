@@ -2,12 +2,13 @@
 Summary:	Supplies technical and tag information about a video or audio file
 Name:		libmediainfo
 Version:	0.7.39
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 URL:		http://mediainfo.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/mediainfo/source/libmediainfo/%{version}/%{name}_%{version}.tar.bz2
 # Source0-md5:	111bb16f4515c5e58235272650ab4b35
+Patch0:		%{name}-tinyxml.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dos2unix
@@ -16,6 +17,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libzen-devel >= %{libzen_ver}
 BuildRequires:	pkgconfig
+BuildRequires:	tinyxml-devel
 BuildRequires:	zlib-devel
 Requires:	libzen >= %{libzen_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -64,6 +66,7 @@ Static libmediainfo library.
 
 %prep
 %setup -q -n MediaInfoLib
+%patch0 -p1
 cp           Release/ReadMe_DLL_Linux.txt ReadMe.txt
 mv           History_DLL.txt History.txt
 dos2unix     *.txt *.html Source/Doc/*.html
