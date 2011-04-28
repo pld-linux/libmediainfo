@@ -48,7 +48,7 @@ This package contains the shared library for MediaInfo.
 Summary:	Include files and mandatory libraries for development
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libzen-devel >= 0.4.9
+Requires:	libzen-devel >= %{libzen_ver}
 
 %description devel
 Include files and mandatory libraries for development.
