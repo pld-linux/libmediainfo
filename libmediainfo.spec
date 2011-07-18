@@ -1,4 +1,4 @@
-%define	libzen_ver 0.4.19
+%define	libzen_ver 0.4.20
 Summary:	Supplies technical and tag information about a video or audio file
 Name:		libmediainfo
 Version:	0.7.47
