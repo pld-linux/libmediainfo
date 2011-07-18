@@ -2,7 +2,7 @@
 Summary:	Supplies technical and tag information about a video or audio file
 Name:		libmediainfo
 Version:	0.7.47
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/project/mediainfo/source/libmediainfo/%{version}/%{name}_%{version}.tar.bz2
