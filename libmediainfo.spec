@@ -1,12 +1,12 @@
-%define	libzen_ver 0.4.20
+%define	libzen_ver 0.4.28
 Summary:	Supplies technical and tag information about a video or audio file
 Name:		libmediainfo
-Version:	0.7.47
-Release:	2
+Version:	0.7.60
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/project/mediainfo/source/libmediainfo/%{version}/%{name}_%{version}.tar.bz2
-# Source0-md5:	d18e86a4b3e3e893e04bb3afd638fa97
+# Source0-md5:	f2a8e921814fc188ada7a236c8a2073e
 URL:		http://mediainfo.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
