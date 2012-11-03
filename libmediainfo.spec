@@ -24,8 +24,9 @@ BuildRequires:	doxygen
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libzen-devel >= %{libzen_ver}
-BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	libzen >= %{libzen_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
