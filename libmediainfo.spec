@@ -147,9 +147,10 @@ for i in MediaInfo MediaInfoDLL; do
 	install -m 644 Source/$i/*.h $RPM_BUILD_ROOT%{_includedir}/$i
 done
 
-%{__sed} -i -e 's|Version: .*|Version: %{version}|g' Project/GNU/Library/libmediainfo.pc
 install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
 install Project/GNU/Library/libmediainfo.pc $RPM_BUILD_ROOT%{_pkgconfigdir}
+# fix empty Version tag
+%{__sed} -i -e 's|Version: .*|Version: %{version}|g' $RPM_BUILD_ROOT%{_pkgconfigdir}/libmediainfo.pc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
