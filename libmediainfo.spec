@@ -4,18 +4,17 @@
 %bcond_without	curl	# cURL support
 %bcond_without	mms	# MMS support
 #
-%define	libzen_ver 0.4.29
+%define	libzen_ver 0.4.33
 
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	0.7.67
-Release:	2
+Version:	0.7.86
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/mediainfo/%{name}_%{version}.tar.bz2
-# Source0-md5:	c6372a176f45a9971740b46c652f65eb
-Patch0:		%{name}-build.patch
+# Source0-md5:	98fc5e3c89cf13bb53353312aaf26596
 URL:		http://mediainfo.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
@@ -113,7 +112,6 @@ Statyczna biblioteka MediaInfo.
 
 %prep
 %setup -q -n MediaInfoLib
-%patch0 -p1
 cp Release/ReadMe_DLL_Linux.txt ReadMe.txt
 mv History_DLL.txt History.txt
 %undos *.txt *.html Source/Doc/*.html
