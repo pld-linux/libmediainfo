@@ -1,21 +1,28 @@
-# TODO: system [lib]tinyxml2 when released (http://www.grinninglizard.com/tinyxml2/index.html)
+# TODO: system libs:
+# - aes_gladman
+# - sha1_gladman
+# - sha2_gladman
+# - hmac_gladman
+# - md5? (which implementation?)
 #
 # Conditional build:
-%bcond_without	curl	# cURL support
-%bcond_without	mms	# MMS support
+%bcond_without	curl		# cURL support
+%bcond_without	mms		# MMS support
+%bcond_without	apidoc		# API documentation (doxygen generated)
+%bcond_without	static_libs	# static library
 #
-%define	libzen_ver 0.4.33
+%define	libzen_ver 0.4.35
 
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	0.7.86
+Version:	0.7.96
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/mediainfo/%{name}_%{version}.tar.bz2
-# Source0-md5:	98fc5e3c89cf13bb53353312aaf26596
-URL:		http://mediainfo.sourceforge.net/
+Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/%{name}_%{version}.tar.xz
+# Source0-md5:	cb5d22bb940bd78c67dd4ba963832aa8
+URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
 %{?with_curl:BuildRequires:	curl-devel}
@@ -26,7 +33,9 @@ BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libzen-devel >= %{libzen_ver}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.566
-BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	tinyxml2-devel
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	libzen >= %{libzen_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -89,7 +98,9 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_curl:Requires:	curl-devel}
 %{?with_mms:Requires:	libmms-devel}
+Requires:	libstdc++-devel
 Requires:	libzen-devel >= %{libzen_ver}
+Requires:	tinyxml2-devel
 Requires:	zlib-devel
 
 %description devel
@@ -110,10 +121,21 @@ Static MediaInfo library.
 %description static -l pl.UTF-8
 Statyczna biblioteka MediaInfo.
 
+%package apidocs
+Summary:	API documentation for MediaInfo library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki MediaInfo
+Group:		Documentation
+
+%description apidocs
+API documentation for MediaInfo library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki MediaInfo.
+
 %prep
 %setup -q -n MediaInfoLib
 cp Release/ReadMe_DLL_Linux.txt ReadMe.txt
-mv History_DLL.txt History.txt
+%{__mv} History_DLL.txt History.txt
 %undos *.txt *.html Source/Doc/*.html
 chmod 644 *.txt *.html Source/Doc/*.html
 
@@ -124,31 +146,24 @@ cd Project/GNU/Library
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-shared \
+	%{?with_static_libs:--enable-static} \
 	%{?with_curl:--with-libcurl} \
-	%{?with_mms:--with-libmms}
+	%{?with_mms:--with-libmms} \
+	--with-libtinyxml2
 
 %{__make} clean
 %{__make}
+
+%if %{with apidocs}
 cd ../../../Source/Doc
 doxygen Doxyfile
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} -C Project/GNU/Library install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-# MediaInfoDLL headers and MediaInfo-config
-for i in MediaInfo MediaInfoDLL; do
-	install -d $RPM_BUILD_ROOT%{_includedir}/$i
-	install -m 644 Source/$i/*.h $RPM_BUILD_ROOT%{_includedir}/$i
-done
-
-install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
-install Project/GNU/Library/libmediainfo.pc $RPM_BUILD_ROOT%{_pkgconfigdir}
-# fix empty Version tag
-%{__sed} -i -e 's|Version: .*|Version: %{version}|g' $RPM_BUILD_ROOT%{_pkgconfigdir}/libmediainfo.pc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -158,20 +173,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc History.txt License.html ReadMe.txt
+%doc Changes.txt History.txt License.html ReadMe.txt
 %attr(755,root,root) %{_libdir}/libmediainfo.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libmediainfo.so.0
 
 %files devel
 %defattr(644,root,root,755)
-# Documentation.html expects Doc/index.html
-%doc Changes.txt Source/Doc/Documentation.html Doc Source/Example/HowToUse*
 %attr(755,root,root) %{_libdir}/libmediainfo.so
 %{_libdir}/libmediainfo.la
 %{_includedir}/MediaInfo
 %{_includedir}/MediaInfoDLL
 %{_pkgconfigdir}/libmediainfo.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libmediainfo.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+# Documentation.html expects Doc/index.html
+%doc Source/Doc/Documentation.html Doc Source/Example/HowToUse*
+%endif
