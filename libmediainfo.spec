@@ -10,9 +10,8 @@
 %bcond_without	mms		# MMS support
 %bcond_without	apidoc		# API documentation (doxygen generated)
 %bcond_without	static_libs	# static library
-#
-%define	libzen_ver 0.4.35
 
+%define	libzen_ver 0.4.35
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
@@ -125,6 +124,9 @@ Statyczna biblioteka MediaInfo.
 Summary:	API documentation for MediaInfo library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki MediaInfo
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API documentation for MediaInfo library.
@@ -134,7 +136,7 @@ Dokumentacja API biblioteki MediaInfo.
 
 %prep
 %setup -q -n MediaInfoLib
-cp Release/ReadMe_DLL_Linux.txt ReadMe.txt
+cp -p Release/ReadMe_DLL_Linux.txt ReadMe.txt
 %{__mv} History_DLL.txt History.txt
 %undos *.txt *.html Source/Doc/*.html
 chmod 644 *.txt *.html Source/Doc/*.html
