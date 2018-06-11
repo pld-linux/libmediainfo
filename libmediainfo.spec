@@ -11,16 +11,16 @@
 %bcond_without	apidoc		# API documentation (doxygen generated)
 %bcond_without	static_libs	# static library
 
-%define	libzen_ver 0.4.35
+%define	libzen_ver 0.4.37
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	0.7.96
+Version:	18.05
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/%{name}_%{version}.tar.xz
-# Source0-md5:	cb5d22bb940bd78c67dd4ba963832aa8
+# Source0-md5:	c30d5364286480b7b9cb808891dfc35e
 URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
