@@ -1,9 +1,9 @@
 # TODO: system libs:
-# - aes_gladman
-# - sha1_gladman
-# - sha2_gladman
-# - hmac_gladman
-# - md5? (which implementation?)
+# - pkgconfig(aes_gladman)
+# - pkgconfig(sha1_gladman)
+# - pkgconfig(sha2_gladman)
+# - pkgconfig(hmac_gladman)
+# - md5? (which implementation? pkgconfig(md5) is checked)
 #
 # Conditional build:
 %bcond_without	curl		# cURL support
@@ -15,12 +15,12 @@
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	18.05
+Version:	18.12
 Release:	1
-License:	LGPL v2+
+License:	BSD or Apache v2.0+ or LGPL v2.1+ or GPL v2+ or MPL v2.0+
 Group:		Libraries
 Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/%{name}_%{version}.tar.xz
-# Source0-md5:	c30d5364286480b7b9cb808891dfc35e
+# Source0-md5:	7ce25e05674ceabcf2fa9706febdbdda
 URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
@@ -175,7 +175,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Changes.txt History.txt License.html ReadMe.txt
+%doc Changes.txt History.txt License.html README.md ReadMe.txt
 %attr(755,root,root) %{_libdir}/libmediainfo.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libmediainfo.so.0
 
