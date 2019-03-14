@@ -16,7 +16,7 @@ Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
 Version:	18.12
-Release:	1
+Release:	2
 License:	BSD or Apache v2.0+ or LGPL v2.1+ or GPL v2+ or MPL v2.0+
 Group:		Libraries
 Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/%{name}_%{version}.tar.xz
