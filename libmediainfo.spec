@@ -15,12 +15,12 @@
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	18.12
-Release:	2
+Version:	19.09
+Release:	1
 License:	BSD or Apache v2.0+ or LGPL v2.1+ or GPL v2+ or MPL v2.0+
 Group:		Libraries
-Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/%{name}_%{version}.tar.xz
-# Source0-md5:	7ce25e05674ceabcf2fa9706febdbdda
+Source0:	https://github.com/MediaArea/MediaInfoLib/archive/v%{version}.tar.gz
+# Source0-md5:	5d24b2fcc3c551e070b5dd6192424a4b
 URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
@@ -135,7 +135,7 @@ API documentation for MediaInfo library.
 Dokumentacja API biblioteki MediaInfo.
 
 %prep
-%setup -q -n MediaInfoLib
+%setup -q -n MediaInfoLib-%{version}
 cp -p Release/ReadMe_DLL_Linux.txt ReadMe.txt
 %{__mv} History_DLL.txt History.txt
 %undos *.txt *.html Source/Doc/*.html
