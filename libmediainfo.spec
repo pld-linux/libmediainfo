@@ -8,7 +8,7 @@
 # Conditional build:
 %bcond_without	curl		# cURL support
 %bcond_without	mms		# MMS support
-%bcond_without	apidoc		# API documentation (doxygen generated)
+%bcond_without	apidocs		# API documentation (doxygen generated)
 %bcond_without	static_libs	# static library
 
 %define	libzen_ver 0.4.37
@@ -124,7 +124,7 @@ Statyczna biblioteka MediaInfo.
 Summary:	API documentation for MediaInfo library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki MediaInfo
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
