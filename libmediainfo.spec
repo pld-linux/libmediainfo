@@ -15,12 +15,12 @@
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	19.09
+Version:	20.03
 Release:	1
 License:	BSD or Apache v2.0+ or LGPL v2.1+ or GPL v2+ or MPL v2.0+
 Group:		Libraries
-Source0:	https://github.com/MediaArea/MediaInfoLib/archive/v%{version}.tar.gz
-# Source0-md5:	5d24b2fcc3c551e070b5dd6192424a4b
+Source0:	https://github.com/MediaArea/MediaInfoLib/archive/v%{version}/MediaInfoLib-%{version}.tar.gz
+# Source0-md5:	8e1b8c0fbc0b129ec6c35ac86b3f646f
 URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
@@ -167,6 +167,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C Project/GNU/Library install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmediainfo.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -182,7 +185,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmediainfo.so
-%{_libdir}/libmediainfo.la
 %{_includedir}/MediaInfo
 %{_includedir}/MediaInfoDLL
 %{_pkgconfigdir}/libmediainfo.pc
