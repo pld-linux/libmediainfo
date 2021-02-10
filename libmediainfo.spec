@@ -31,7 +31,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libzen-devel >= %{libzen_ver}
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	tinyxml2-devel
 BuildRequires:	xz
@@ -124,9 +124,7 @@ Statyczna biblioteka MediaInfo.
 Summary:	API documentation for MediaInfo library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki MediaInfo
 Group:		Documentation
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 API documentation for MediaInfo library.
