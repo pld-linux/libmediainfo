@@ -124,7 +124,7 @@ Statyczna biblioteka MediaInfo.
 Summary:	API documentation for MediaInfo library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki MediaInfo
 Group:		Documentation
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API documentation for MediaInfo library.
