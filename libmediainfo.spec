@@ -8,6 +8,7 @@
 # Conditional build:
 %bcond_without	curl		# cURL support
 %bcond_without	mms		# MMS support
+%bcond_without	graphviz	# graphviz support
 %bcond_without	apidocs		# API documentation (doxygen generated)
 %bcond_without	static_libs	# static library
 
@@ -15,17 +16,19 @@
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	21.03
+Version:	21.09
 Release:	1
 License:	BSD or Apache v2.0+ or LGPL v2.1+ or GPL v2+ or MPL v2.0+
 Group:		Libraries
 Source0:	https://github.com/MediaArea/MediaInfoLib/archive/v%{version}/MediaInfoLib-%{version}.tar.gz
-# Source0-md5:	df1cae79f3332505d37e7607b52a6052
+# Source0-md5:	6ef1978110a1bbca86aff7b9e2d2d3d6
+Patch0:		unresolved_tfsxml.patch
 URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
 %{?with_curl:BuildRequires:	curl-devel}
 BuildRequires:	doxygen
+%{?with_graphviz:BuildRequires:	graphviz-devel}
 %{?with_mms:BuildRequires:	libmms-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
@@ -134,6 +137,7 @@ Dokumentacja API biblioteki MediaInfo.
 
 %prep
 %setup -q -n MediaInfoLib-%{version}
+%patch0 -p1
 cp -p Release/ReadMe_DLL_Linux.txt ReadMe.txt
 %{__mv} History_DLL.txt History.txt
 %undos *.txt *.html Source/Doc/*.html
@@ -147,6 +151,7 @@ cd Project/GNU/Library
 %{__automake}
 %configure \
 	%{?with_static_libs:--enable-static} \
+	%{?with_graphviz:--with-graphviz} \
 	%{?with_curl:--with-libcurl} \
 	%{?with_mms:--with-libmms} \
 	--with-libtinyxml2
