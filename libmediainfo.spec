@@ -12,16 +12,16 @@
 %bcond_without	apidocs		# API documentation (doxygen generated)
 %bcond_without	static_libs	# static library
 
-%define	libzen_ver 0.4.37
+%define	libzen_ver 0.4.40
 Summary:	Supplies technical and tag information about a video or audio file
 Summary(pl.UTF-8):	Informacje techniczne i znaczniki dla plików wideo i dźwiękowych
 Name:		libmediainfo
-Version:	22.09
+Version:	22.12
 Release:	1
 License:	BSD or Apache v2.0+ or LGPL v2.1+ or GPL v2+ or MPL v2.0+
 Group:		Libraries
 Source0:	https://github.com/MediaArea/MediaInfoLib/archive/v%{version}/MediaInfoLib-%{version}.tar.gz
-# Source0-md5:	f42811c8ed8297672fc493e5a09f8dd6
+# Source0-md5:	6b1632d958b184eb1985021c0da90302
 URL:		https://github.com/MediaArea/MediaInfoLib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
